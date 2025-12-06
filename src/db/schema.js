@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm";
 import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
+import { nanoid } from "nanoid";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -91,3 +92,16 @@ export const accountRelations = relations(account, ({ one }) => ({
     references: [user.id],
   }),
 }));
+
+
+
+export const agent=pgTable("agent",{
+  id:text("id").primaryKey().$defaultFn(()=>nanoid()),
+  name:text("name").notNull(),
+  userId:text("userId").notNull().references(()=>user.id,{onDelete:"cascade"}),
+  instruction:text("instruction").notNull(),
+  createdAt:timestamp("createdAt").notNull().defaultNow(),
+  updatedAt:timestamp("updatedAt").notNull().defaultNow(),
+  
+
+})

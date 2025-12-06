@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar" 
 
 import User from "./User"
+import Link from "next/link"
  
 const items = [
   {
@@ -24,7 +25,7 @@ const items = [
   },
   {
     title:"Agents",
-    url:"/",
+    url:"/agents",
     icon:BotIcon
   }
 ]
@@ -49,12 +50,13 @@ export function DashSide() {
                     <SidebarMenu>
 
                         {items.map((curr) => (
-                              <SidebarMenuItem key={curr.title}>
-                                <SidebarMenuButton className="h-10 hover:bg-blue-600 hover:text-white">
-                                  <curr.icon className="w-5 h-5" />
-                                  {curr.title}
-                                </SidebarMenuButton>
-                              </SidebarMenuItem>
+                              <Link  key={curr.title} href={curr.url}>
+                                <SidebarMenuItem key={curr.title}>
+                                  <SidebarMenuButton className="h-10 hover:bg-blue-600 hover:text-white">
+                                    <curr.icon className="w-5 h-5" />
+                                    {curr.title}
+                                  </SidebarMenuButton>
+                              </SidebarMenuItem></Link>
                             ))}
                   
                     </SidebarMenu>

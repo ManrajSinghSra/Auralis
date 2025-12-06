@@ -8,6 +8,13 @@
       "when": 1764832230410,
       "tag": "0000_wild_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1765015378165,
+      "tag": "0001_redundant_veda",
+      "breakpoints": true
     }
   ]
 }
