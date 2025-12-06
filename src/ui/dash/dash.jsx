@@ -1,0 +1,76 @@
+import { BotIcon, Calendar, Home, Inbox, Search, Settings, StarIcon, VideoIcon } from "lucide-react"
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarSeparator,
+} from "@/components/ui/sidebar" 
+
+import User from "./User"
+ 
+const items = [
+  {
+    title: "Meeting",
+    url: "/",
+    icon: VideoIcon,
+  },
+  {
+    title:"Agents",
+    url:"/",
+    icon:BotIcon
+  }
+]
+
+export function DashSide() {
+  return (
+    <Sidebar> 
+
+        <SidebarHeader>
+            <div className="flex gap-4">
+                <img src="./logo.svg" alt="" className="w-10 h-10" />
+                <h1 className="text-3xl font-extrabold">Auralis</h1>
+            </div>
+        </SidebarHeader>
+
+        <SidebarSeparator />
+
+        <SidebarContent>
+
+            <SidebarGroup>
+                <SidebarGroupContent>
+                    <SidebarMenu>
+
+                        {items.map((curr) => (
+                              <SidebarMenuItem key={curr.title}>
+                                <SidebarMenuButton className="h-10 hover:bg-blue-600 hover:text-white">
+                                  <curr.icon className="w-5 h-5" />
+                                  {curr.title}
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                            ))}
+                  
+                    </SidebarMenu>
+                </SidebarGroupContent>
+            </SidebarGroup>
+
+        </SidebarContent>
+
+        <SidebarFooter>
+           <SidebarMenu>
+            <SidebarMenuItem>
+              <User />
+            </SidebarMenuItem>
+            </SidebarMenu >
+        </SidebarFooter>
+
+    </Sidebar>
+  )
+}

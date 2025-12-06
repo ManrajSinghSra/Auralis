@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Auralis – AI-Powered Video Meeting Platform
 
-## Getting Started
+Auralis is an AI-enhanced video meeting platform that combines real-time WebRTC video calling, Stream Chat messaging, and a multimodal AI assistant that listens, summarizes, and interacts during meetings. It transforms regular calls into smart, actionable conversations.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Real-Time Video & Audio
+- WebRTC-based video conferencing  
+- Multiple participants per room  
+- Camera/mic controls  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### AI Meeting Assistant
+- Live speech-to-text  
+- Real-time insights and summaries  
+- AI responses via chat (and optional voice)  
+- Automatic meeting notes and action items  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Integrated Chat (Stream Chat)
+- Fast, reliable real-time messaging  
+- Threads, reactions, read indicators  
+- Secure and scalable  
 
-## Learn More
+### Post-Meeting Intelligence
+- Full meeting transcript  
+- Final summary and key decisions  
+- Action items saved per meeting  
 
-To learn more about Next.js, take a look at the following resources:
+### Modern UI/UX
+- Next.js/React frontend  
+- Responsive meeting layout  
+- Chat + transcript side panels  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧱 Tech Stack
 
-## Deploy on Vercel
+### Frontend
+- Next.js / React  
+- WebRTC  
+- Tailwind CSS  
+- Stream Chat Web SDK  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend
+- Node.js / Express or Next.js API Routes  
+- WebSocket signaling server  
+- PostgreSQL + Prisma  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### AI Stack
+- Streaming Speech-to-Text  
+- LLM-based reasoning  
+- Streaming Text-to-Speech  
+- Optional avatar video output  
+
+---
+
+## 📐 Architecture
+
