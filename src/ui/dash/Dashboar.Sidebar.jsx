@@ -14,7 +14,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar" 
 
-import User from "./User"
+import User from "./Dasboars.User"
 import Link from "next/link"
  
 const items = [

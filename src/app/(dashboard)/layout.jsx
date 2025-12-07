@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import {DashSide} from '@/ui/dash/dash'
+import {DashSide} from '@/ui/dash/Dashboar.Sidebar'
 import DashNavbar from '@/ui/dash/DashNavbar'
 import React from 'react'
 

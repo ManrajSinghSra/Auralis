@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { ChevronDown, ChevronUp } from 'lucide-react'  
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation'; 
-import { GenerateAvatar } from '../avatar/avatar';
+import { GenerateAvatar } from '../../Avatar/avatar';
 
 const User = () => {
 
