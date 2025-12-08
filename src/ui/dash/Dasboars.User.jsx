@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { ChevronDown, ChevronUp } from 'lucide-react'  
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation'; 
-import { GenerateAvatar } from '../../Avatar/avatar';
+import { GenerateAvatar } from '../../../Avatar/avatar';
 
 const User = () => {
 
@@ -59,10 +59,7 @@ const User = () => {
                              
                             <DropdownMenuSeparator />
                             
-                            <DropdownMenuItem>
-
-                                <FiLogOut />
-                                <span onClick={()=>{
+                            <DropdownMenuItem onClick={()=>{
                                     authClient.signOut({
                                         fetchOptions:{
                                             onSuccess:()=>{
@@ -71,6 +68,9 @@ const User = () => {
                                         }
                                     })
                                 }}>
+
+                                <FiLogOut />
+                                <span>
                                     Log out</span>
 
                             </DropdownMenuItem>
