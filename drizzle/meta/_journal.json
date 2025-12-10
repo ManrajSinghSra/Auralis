@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1764832230410,
-      "tag": "0000_wild_mercury",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1765015378165,
-      "tag": "0001_redundant_veda",
+      "when": 1765390590953,
+      "tag": "0000_shiny_imperial_guard",
       "breakpoints": true
     }
   ]

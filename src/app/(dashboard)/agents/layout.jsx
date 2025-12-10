@@ -1,7 +1,9 @@
 const layout = ({children}) => {
   return (
-    <div className='flex justify-center items-center'>{children}</div>
+    <div className='flex flex-col justify-center items-center'> 
+      {children}
+    </div>
   )
 }
 
-export default layout
+export default layout 

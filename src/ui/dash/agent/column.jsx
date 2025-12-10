@@ -1,16 +1,19 @@
 import { CornerDownRightIcon} from "lucide-react";
 import { GenerateAvatar } from "../../../../Avatar/avatar";
+import { redirect } from "next/navigation";
  
-
-
 export const columns = [
   {
 
     accessorKey: "name",
     header: "Agent Name",
     cell: ({ row }) => {
+
+      console.log(row.original);
+      
       const name = row.getValue("name"); 
-      return (<>
+      return (
+      <div onClick={()=>{ redirect(`/agents/${row.getValue("name")}`)  }}>
               <div className="flex items-center gap-3 ">
                 <GenerateAvatar seed={name} variant="botttsNeutral" className="w-10 h-10" />
                 <span className="font-medium">{name}</span>
@@ -20,7 +23,7 @@ export const columns = [
                 <span className="text-gray-600"> {row.original.instruction}</span>
               </div>
 
-        </>
+        </div>
       );
     },
   } 
