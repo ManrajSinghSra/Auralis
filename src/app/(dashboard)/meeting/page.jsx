@@ -37,7 +37,6 @@ const page = async() => {
     
       <Meetingheader agents={res2} />
       <MeetingSearch  />
-
       <Meetings res={res}/>
 
     </div>

@@ -21,12 +21,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Label } from "@radix-ui/react-label"
+import { useState } from "react"
 
 
 
 const AddMeeting = ({agents,open,handleOpen}) => {
   
       const agentsN=agents.data;
+
+      const [addingMeeting,setAddingMeeeting]=useState({title:"",userId:"",agentId:""})
+
+      const handleSubmit=(e)=>{
+         e.preventDefault() 
+         console.log();
+         
+         
+      }
 
   return (
     <div>
@@ -40,7 +50,7 @@ const AddMeeting = ({agents,open,handleOpen}) => {
                                 <DialogDescription>Make a new Meeting</DialogDescription>
                             </DialogHeader>
         
-                           <form>
+                           <form onSubmit={handleSubmit}>
                             <div className="grid gap-4">
 
                                 <div>
@@ -78,7 +88,7 @@ const AddMeeting = ({agents,open,handleOpen}) => {
                                 <DialogClose asChild >
                                 <Button variant="outline">Cancel</Button>
                                 </DialogClose>
-                                <Button type="submit" onClick={()=>console.log("save")}>Save</Button>
+                                <Button type="submit">Save</Button>
                             </DialogFooter>
                             </form>
         
