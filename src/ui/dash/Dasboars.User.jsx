@@ -1,81 +1,21 @@
-"use client"
-import { FiLogOut } from "react-icons/fi";
+import { headers } from "next/headers";
+import DashboardUserClient from "./Dashboard.User.Client";
+import { auth } from '@/lib/auth'; 
+import { redirect } from "next/dist/server/api-utils";
 
-
-import { SidebarMenuButton } from '@/components/ui/sidebar' 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, ChevronUp } from 'lucide-react'  
-import { authClient } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation'; 
-import { GenerateAvatar } from '../../../Avatar/avatar';
-
-const User = () => {
-
-      const router = useRouter();
-
-    const {data:session}= authClient.useSession()
-
+const User = async() => {
+ 
+    const session=await auth.api.getSession({
+        headers:await headers()
+    })
 
     if(!session){
-        return<>Loading///</>
+        redirect("/signin")
     }
+
   return (
     <>
-          <DropdownMenu>
-                        <DropdownMenuTrigger asChild  className="border border-foreground w-full p-5">
-                            <SidebarMenuButton className="text-center flex p-7">
-
-                                <GenerateAvatar 
-                                seed={session.user.name}
-                                variant="botttsNeutral"
-                                />
-                                <h1>{session.user.name}</h1>
-                                <ChevronUp className="ml-auto" />
-
-                            </SidebarMenuButton>
-                        </DropdownMenuTrigger>
-
-
-
-                        <DropdownMenuContent side="top" className="w-55">
-                                     
-                               <div className='flex gap-4 p-1 w-40'>
-                                    
-                                    <div>
-                                        <GenerateAvatar 
-                                        seed={session.user.name}
-                                        variant="botttsNeutral"
-                                         />
-                                    </div>
-                                   <div>
-                                     <h1>{session && session.user.name}</h1>
-                                
-                                    
-                                    <h1 className='text-gray-500'>@{session && session.user.email.substring(0,10)}</h1>
-                                   </div>
-                                </div>
-                            
-                             
-                            <DropdownMenuSeparator />
-                            
-                            <DropdownMenuItem onClick={()=>{
-                                    authClient.signOut({
-                                        fetchOptions:{
-                                            onSuccess:()=>{
-                                                router.push("/signin")
-                                            }
-                                        }
-                                    })
-                                }}>
-
-                                <FiLogOut />
-                                <span>
-                                    Log out</span>
-
-                            </DropdownMenuItem>
-
-                        </DropdownMenuContent>
-            </DropdownMenu>
+         <DashboardUserClient session={session} />
     </>
   )
 }

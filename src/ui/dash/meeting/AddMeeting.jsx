@@ -1,5 +1,4 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -22,21 +21,22 @@ import {
 } from "@/components/ui/select"
 import { Label } from "@radix-ui/react-label"
 import { useState } from "react"
+import { GenerateAvatar } from "../../../../Avatar/avatar" 
 
 
-
-const AddMeeting = ({agents,open,handleOpen}) => {
-  
+const AddMeeting = ({agents,open,handleOpen,session}) => {
+   
       const agentsN=agents.data;
+      
+      const [addingMeeting,setAddingMeeeting]=useState({name:"",userId:"",agentId:""})
+      
+      const handleSubmit=async(e)=>{
+                e.preventDefault() 
+                const payload = {...addingMeeting,userId: session.user.id,};
+                console.log(payload);
+                handleOpen()
+        }
 
-      const [addingMeeting,setAddingMeeeting]=useState({title:"",userId:"",agentId:""})
-
-      const handleSubmit=(e)=>{
-         e.preventDefault() 
-         console.log();
-         
-         
-      }
 
   return (
     <div>
@@ -55,25 +55,31 @@ const AddMeeting = ({agents,open,handleOpen}) => {
 
                                 <div>
                                     <Label htmlFor="title">Title</Label>
-                                    <Input placeholder="meeting" name="title"></Input>
+                                    <Input placeholder="meeting" name="name" value={addingMeeting.name} onChange={(e)=>setAddingMeeeting({...addingMeeting,name:e.target.value})} ></Input>
                                 </div>
 
-                                <Select>
+                                <Select
+                                  value={addingMeeting.agentId}
+                                 onValueChange={(e)=>setAddingMeeeting({...addingMeeting,agentId:e})}>
+
                                     <SelectTrigger className="w-full">
                                         <SelectValue  placeholder="Select an Agent" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectGroup>
+                                        <SelectGroup className="flex flex-col gap-4" >
                                         <SelectLabel>Agents</SelectLabel>
+         
                                            {agentsN.map((curr)=>{
                                             return(
-                                        <SelectItem className="" key={curr.id} value={curr.name}>{curr.name}</SelectItem>)
+                                                <div className="flex " key={curr.id} >
+                                                <GenerateAvatar seed={curr.name} variant="botttsNeutral" />
+                                                <SelectItem className=""  value={curr.id}>{curr.name}</SelectItem>
+                                                </div>)
                                         })}
                                        
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
-
                                 <div className="flex gap-3 mb-4 ">
                                     <h1 className="text-gray-500">Not found what you are looking for?</h1>
                                     <h1 className="text-blue-900">Create one</h1>
@@ -81,9 +87,6 @@ const AddMeeting = ({agents,open,handleOpen}) => {
                                
                             </div>
 
-
-
-        
                             <DialogFooter className="">
                                 <DialogClose asChild >
                                 <Button variant="outline">Cancel</Button>

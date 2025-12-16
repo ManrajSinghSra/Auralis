@@ -116,9 +116,9 @@ export const  meetingStatus=pgEnum("meetingStatus",[
 export const meeting=pgTable("meeting", {
   
     id:text("id").primaryKey().$defaultFn(()=>nanoid()),
-    name:text("name").notNull(),
-    userId:text("userId").notNull().references(()=>user.id,{onDelete:"cascade"}),
-    agentId:text("agentId").notNull().references(()=>agent.id,{onDelete:"cascade"}),
+    name:text("name").notNull(), /*   */
+    userId:text("userId").notNull().references(()=>user.id,{onDelete:"cascade"}), /* */
+    agentId:text("agentId").notNull().references(()=>agent.id,{onDelete:"cascade"}), /* */
 
     startedAt:timestamp("startedAt"),
     endedAt:   timestamp("endedAt"),

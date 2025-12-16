@@ -11,17 +11,16 @@ const page = async() => {
     headers:await headers()
   })
 
-
   const data=await fetch(`${process.env.APP_URL}/api/meetings/getMeetings`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({hello:"Meeting"})
 
   })
+  
   const res=await data.json();
   
-  
-   const data2=await fetch(`http://localhost:3000/api/agents`,{
+   const data2=await fetch(`${process.env.APP_URL}/api/agents`,{
             method:"POST",
             headers:{
               "Content-Type":"application/json",
@@ -35,7 +34,7 @@ const page = async() => {
   return (
     <div className='m-4 flex flex-col gap-3'>
     
-      <Meetingheader agents={res2} />
+      <Meetingheader session={session} agents={res2} />
       <MeetingSearch  />
       <Meetings res={res}/>
 
