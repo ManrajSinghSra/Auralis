@@ -22,21 +22,41 @@ import {
 import { Label } from "@radix-ui/react-label"
 import { useState } from "react"
 import { GenerateAvatar } from "../../../../Avatar/avatar" 
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 
 const AddMeeting = ({agents,open,handleOpen,session}) => {
    
       const agentsN=agents.data;
+
+      const router=useRouter();
       
-      const [addingMeeting,setAddingMeeeting]=useState({name:"",userId:"",agentId:""})
+      const [addingMeeting,setAddingMeeeting]=useState({name:"",agentId:""})
+      const [error,setError]=useState({have:false,text:""});
       
       const handleSubmit=async(e)=>{
-                e.preventDefault() 
-                const payload = {...addingMeeting,userId: session.user.id,};
-                console.log(payload);
-                handleOpen()
-        }
+                e.preventDefault()                  
+                const res=await fetch(`http://localhost:3000/api/addMeeting`,{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify({name:addingMeeting.name,userId:session.user.id,agentId:addingMeeting.agentId})
+                })
+  
+                if(res.status==200){
+                     toast.success("Meeting created successfully")
+                      setError({have:false,text:""})
+                     handleOpen()
+                     router.refresh()
 
+                }
+                if(res.status==400){
+                    const e=await res.json()
+                    setError({have:true,text:e.error})
+                }
+        }
 
   return (
     <div>
@@ -80,6 +100,14 @@ const AddMeeting = ({agents,open,handleOpen,session}) => {
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
+                                {error.have && (
+                                        <div className="rounded-md border border-red-300 bg-red-50 px-3 py-2">
+                                            <h1 className="text-sm font-medium text-red-600">
+                                            {error.text}
+                                            </h1>
+                                        </div>
+                                        )}
+
                                 <div className="flex gap-3 mb-4 ">
                                     <h1 className="text-gray-500">Not found what you are looking for?</h1>
                                     <h1 className="text-blue-900">Create one</h1>
@@ -87,12 +115,12 @@ const AddMeeting = ({agents,open,handleOpen,session}) => {
                                
                             </div>
 
-                            <DialogFooter className="">
-                                <DialogClose asChild >
-                                <Button variant="outline">Cancel</Button>
-                                </DialogClose>
-                                <Button type="submit">Save</Button>
-                            </DialogFooter>
+                                <DialogFooter className="">
+                                    <DialogClose asChild >
+                                    <Button variant="outline">Cancel</Button>
+                                    </DialogClose>
+                                    <Button type="submit">Save</Button>
+                                </DialogFooter>
                             </form>
         
                 </DialogContent>
