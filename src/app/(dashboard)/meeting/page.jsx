@@ -1,7 +1,6 @@
 import { auth } from '@/lib/auth'
 import Meetingheader from '@/ui/dash/meeting/Meetingheader'
-import Meetings from '@/ui/dash/meeting/Meetings'
-import MeetingSearch from '@/ui/dash/meeting/MeetingSearch'
+import Meetings from '@/ui/dash/meeting/Meetings' 
 import { headers } from 'next/headers'
 
 
@@ -14,7 +13,7 @@ const page = async() => {
   const data=await fetch(`${process.env.APP_URL}/api/meetings/getMeetings`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({hello:"Meeting"})
+    body:JSON.stringify({userId:session.user.id})
 
   })
   
@@ -35,7 +34,6 @@ const page = async() => {
     <div className='m-4 flex flex-col gap-3'>
     
       <Meetingheader session={session} agents={res2} />
-      <MeetingSearch  />
       <Meetings res={res}/>
 
     </div>

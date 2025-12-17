@@ -1,11 +1,11 @@
 import { db } from "@/db/db"
-import { meeting } from "@/db/schema"
+import { agent, meeting } from "@/db/schema"
+import { eq } from "drizzle-orm";
 
-export const POST=async()=>{
-      
-   const data=await db.select().from(meeting)
+export const POST=async(req)=>{
 
-   console.log(data);
+    const {userId}=await req.json() 
+    const data=await db.select().from(meeting).leftJoin(agent,eq(meeting.agentId,agent.id)).where(eq(meeting.userId,userId))
    
     return Response.json({data})
 }
